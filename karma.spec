@@ -14,6 +14,7 @@ Group:		Libraries
 Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/public/%{name}.src-v%{version}.tar.gz
 # Source0-md5:	ac47c8a489cb6a59945e9b50705e6631
 Patch0:		%{name}-makefix.patch
+Patch1:		%{name}-gkh.patch
 URL:		http://www.atnf.csiro.au/karma/
 BuildRequires:	/bin/csh
 BuildRequires:	XFree86-devel
@@ -50,7 +51,8 @@ Czê¶æ KarmaLib przeznaczona dla programistów.
 
 %prep
 %setup -q -n %{name}
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 %ifarch %{ix86}
@@ -68,6 +70,10 @@ MACHINE_OS=alpha_Linux
 %ifarch ppc
 MACHINE=powerpc
 MACHINE_OS=powerpc_Linux
+%endif
+%ifarch amd64
+MACHINE=amd64
+MACHINE_OS=amd64_Linux
 %endif
 OS=Linux
 KARMABASE=%{_libdir}/karma
