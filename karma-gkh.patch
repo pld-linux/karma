@@ -1,0 +1,26 @@
+--- karma/source/lib/karma/packages/r/Linux/atm.c.orig	2001-05-05 01:36:35.000000000 +0200
++++ karma/source/lib/karma/packages/r/Linux/atm.c	2004-01-27 01:00:20.307102136 +0100
+@@ -93,6 +93,7 @@
+ #ifndef SOL_ATM
+ #  define SOL_ATM   264
+ #endif
++#define _LINUX_TYPES_H
+ #include <linux/atm.h>
+ #include <linux/atmdev.h>
+ #include <linux/atmsvc.h>
+--- karma/source/modules/xray/sbcustom.c.orig	1997-09-03 01:32:05.000000000 +0200
++++ karma/source/modules/xray/sbcustom.c	2004-01-27 01:18:26.223017824 +0100
+@@ -476,11 +476,10 @@
+ #if SystemV && !defined(OS_Solaris)
+     struct tms tms;
+ 
+-#  if HZ <= 1000
++  if(HZ <= 1000)
+     return times( &tms ) * (1000 / HZ);
+-#  else
++  else
+     return (times( &tms ) * 1000) / HZ;
+-#  endif
+ 
+ #else
+     struct timeval timeval;
