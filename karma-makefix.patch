@@ -1,0 +1,48 @@
+--- karma/source/lib/makefiles/Linux/karma.orig	Fri Feb  5 06:10:18 1999
++++ karma/source/lib/makefiles/Linux/karma	Sun Aug 18 10:20:38 2002
+@@ -1,7 +1,7 @@
+ LIB := karma
+ 
+ CFLAGS :=
+-LDFLAGS := -ldl
++inclibs := -ldl -lm -lrt -lpthread
+ DEPENDFLAGS :=
+ 
+ include $(KARMAROOT)/source/lib/makefiles/$(OS)/GNUmakefile.rules
+--- karma/source/lib/makefiles/Linux/GNUmakefile.rules.orig	Fri Feb  5 06:18:25 1999
++++ karma/source/lib/makefiles/Linux/GNUmakefile.rules	Sun Aug 18 10:20:25 2002
+@@ -6,6 +6,7 @@
+ library := $(KARMASTATICLIBPATH)/lib$(LIB).a
+ endif
+ shared_lib := lib$(LIB).so.$(version)
++shared_liblink := lib$(LIB).so
+ lintlib := $(KARMALIBPATH)/llib-l$(LIB).ln
+ shared_target := $(KARMALIBPATH)/$(shared_lib)
+ 
+@@ -30,8 +31,9 @@
+ 
+ 
+ $(shared_target):	$(objects)
+-	$(LDso) -o $(shared_lib) $(objects) $(LDFLAGS)
++	$(LDso) -o $(shared_lib) $(objects) $(LDFLAGS) -L$(KARMALIBPATH) $(inclibs) -Wl,-soname=$(shared_lib)
+ 	mv $(shared_lib) $(KARMALIBPATH)
++	ln -s $(shared_lib) $(KARMALIBPATH)/$(shared_liblink)
+ 
+ 
+ $(library):	$(objects)
+--- karma/include/gmakedefs/general.h1.orig	Tue Sep 25 21:05:53 2001
++++ karma/include/gmakedefs/general.h1	Wed Dec  4 21:13:25 2002
+@@ -100,11 +100,11 @@
+ CCpp_libdirs = `gcc --print-search-dirs | fgrep libraries: | awk -- '{print $$2}' | sed -e 's*/:*:*g' | sed -e 's*/$$**'`
+ CCpp_libs    = "gcc stdc++"
+ ifdef _HAS_POSIX_THREADS
+-CC           = cc -D_REENTRANT $(kcflags) -Wall -pedantic-errors
++CC           = cc -D_REENTRANT $(kcflags) -Wall -pedantic
+ CCnopedantic = cc -D_REENTRANT $(kcflags) -Wall
+ CCpp         = c++ -D_REENTRANT $(kcflags)
+ else
+-CC           = cc $(kcflags) -Wall -pedantic-errors
++CC           = cc $(kcflags) -Wall -pedantic
+ CCnopedantic = cc $(kcflags) -Wall
+ CCpp         = c++ $(kcflags)
+ endif
