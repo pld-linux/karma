@@ -8,13 +8,14 @@ Summary:	A powerful programmers toolkit (runtime part)
 Summary(pl):	Potê¿ny zbiór narzêdzi dla programistów (czê¶æ uruchomieniowa)
 Name:		karma
 Version:	1.7
-Release:	1
+Release:	2
 License:	LGPL (KarmaLib), GPL (modules)
 Group:		Libraries
 Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/public/%{name}.src-v%{version}.tar.gz
 # Source0-md5:	ac47c8a489cb6a59945e9b50705e6631
 Patch0:		%{name}-makefix.patch
 Patch1:		%{name}-gkh.patch
+Patch2:		%{name}-amd64.patch
 URL:		http://www.atnf.csiro.au/karma/
 BuildRequires:	/bin/csh
 BuildRequires:	XFree86-devel
@@ -53,6 +54,7 @@ Czê¶æ KarmaLib przeznaczona dla programistów.
 %setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %ifarch %{ix86}
@@ -95,7 +97,7 @@ export PATH
 csh_script/make_build.libs
 %{__make} -C build/${MACHINE_OS}/lib \
 	KOPTIMISE="%{rpmcflags}" \
-	XLIBPATH=/usr/X11R6/lib \
+	XLIBPATH=/usr/X11R6/%{_lib} \
 	XINCLUDEPATH=/usr/X11R6/include
 
 %{__make} -C source/kutil \
@@ -106,7 +108,7 @@ csh_script/make_build.modules
 cp source/modules/GNUmakefile build/${MACHINE_OS}/modules
 %{__make} -C build/${MACHINE_OS}/modules \
 	KOPTIMISE="%{rpmcflags}" \
-	XLIBPATH=/usr/X11R6/lib \
+	XLIBPATH=/usr/X11R6/%{_lib} \
 	XINCLUDEPATH=/usr/X11R6/include
 
 %install
@@ -137,9 +139,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/karma/csh_script
 %{_libdir}/karma/csh_script/machine_type
 %{_libdir}/karma/csh_script/switch-karma
-%attr(755,root,root) %{_libdir}/karma/csh_script/[^ms]*
-%attr(755,root,root) %{_libdir}/karma/csh_script/ma[^c]*
-%attr(755,root,root) %{_libdir}/karma/csh_script/s[^w]*
+%attr(755,root,root) %{_libdir}/karma/csh_script/[!ms]*
+%attr(755,root,root) %{_libdir}/karma/csh_script/ma[!c]*
+%attr(755,root,root) %{_libdir}/karma/csh_script/s[!w]*
 
 %files devel
 %defattr(644,root,root,755)
