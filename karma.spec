@@ -12,6 +12,7 @@ Release:	1
 License:	LGPL (KarmaLib), GPL (modules)
 Group:		Libraries
 Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/public/%{name}.src-v%{version}.tar.gz
+# Source0-md5:	ac47c8a489cb6a59945e9b50705e6631
 Patch0:		%{name}-makefix.patch
 URL:		http://www.atnf.csiro.au/karma/
 BuildRequires:	/bin/csh
