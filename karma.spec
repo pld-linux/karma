@@ -19,6 +19,7 @@ Patch2:		%{name}-amd64.patch
 URL:		http://www.atnf.csiro.au/karma/
 BuildRequires:	/bin/csh
 BuildRequires:	XFree86-devel
+BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	xview-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -73,7 +74,7 @@ MACHINE_OS=alpha_Linux
 MACHINE=powerpc
 MACHINE_OS=powerpc_Linux
 %endif
-%ifarch amd64
+%ifarch %{x8664}
 MACHINE=amd64
 MACHINE_OS=amd64_Linux
 %endif
