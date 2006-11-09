@@ -43,7 +43,7 @@ wizualizacji zosta³o stworzonych przy u¿yciu Karmy.
 Summary:	A powerful programmers toolkit (development part)
 Summary(pl):	Potê¿ny zbiór narzêdzi dla programistów (czê¶æ programistyczna)
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development part of KarmaLib.
