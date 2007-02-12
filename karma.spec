@@ -5,7 +5,7 @@
 # - probably some patching to work outside /usr/local/karma
 #
 Summary:	A powerful programmers toolkit (runtime part)
-Summary(pl):	Potê¿ny zbiór narzêdzi dla programistów (czê¶æ uruchomieniowa)
+Summary(pl.UTF-8):   PotÄ™Å¼ny zbiÃ³r narzÄ™dzi dla programistÃ³w (czÄ™Å›Ä‡ uruchomieniowa)
 Name:		karma
 Version:	1.7
 Release:	2
@@ -31,25 +31,25 @@ libraries and API) and a large number of modules (applications) to
 perform many standard tasks. A wide range of visualisation
 applications have been developed with Karma.
 
-%description -l pl
-Karma jest zbiorem narzêdzi do komunikacji miêdzyprocesowej,
-uwierzytelniania, szyfrowania, wy¶wietlania grafiki, interfejsów
-u¿ytkownika i manipulowania strukturami sieci Karma. Zawiera KarmaLib
-(strukturalne biblioteki i API) oraz du¿± liczbê modu³ów (aplikacji)
-do wykonywania wielu standardowych zadañ. Wiele aplikacji do
-wizualizacji zosta³o stworzonych przy u¿yciu Karmy.
+%description -l pl.UTF-8
+Karma jest zbiorem narzÄ™dzi do komunikacji miÄ™dzyprocesowej,
+uwierzytelniania, szyfrowania, wyÅ›wietlania grafiki, interfejsÃ³w
+uÅ¼ytkownika i manipulowania strukturami sieci Karma. Zawiera KarmaLib
+(strukturalne biblioteki i API) oraz duÅ¼Ä… liczbÄ™ moduÅ‚Ã³w (aplikacji)
+do wykonywania wielu standardowych zadaÅ„. Wiele aplikacji do
+wizualizacji zostaÅ‚o stworzonych przy uÅ¼yciu Karmy.
 
 %package devel
 Summary:	A powerful programmers toolkit (development part)
-Summary(pl):	Potê¿ny zbiór narzêdzi dla programistów (czê¶æ programistyczna)
+Summary(pl.UTF-8):   PotÄ™Å¼ny zbiÃ³r narzÄ™dzi dla programistÃ³w (czÄ™Å›Ä‡ programistyczna)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development part of KarmaLib.
 
-%description devel -l pl
-Czê¶æ KarmaLib przeznaczona dla programistów.
+%description devel -l pl.UTF-8
+CzÄ™Å›Ä‡ KarmaLib przeznaczona dla programistÃ³w.
 
 %prep
 %setup -q -n %{name}
