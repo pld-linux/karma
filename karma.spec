@@ -5,7 +5,7 @@
 # - probably some patching to work outside /usr/local/karma
 #
 Summary:	A powerful programmers toolkit (runtime part)
-Summary(pl.UTF-8):   Potężny zbiór narzędzi dla programistów (część uruchomieniowa)
+Summary(pl.UTF-8):	Potężny zbiór narzędzi dla programistów (część uruchomieniowa)
 Name:		karma
 Version:	1.7
 Release:	2
@@ -41,7 +41,7 @@ wizualizacji zostało stworzonych przy użyciu Karmy.
 
 %package devel
 Summary:	A powerful programmers toolkit (development part)
-Summary(pl.UTF-8):   Potężny zbiór narzędzi dla programistów (część programistyczna)
+Summary(pl.UTF-8):	Potężny zbiór narzędzi dla programistów (część programistyczna)
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
