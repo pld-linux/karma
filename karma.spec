@@ -8,7 +8,7 @@ Summary:	A powerful programmers toolkit (runtime part)
 Summary(pl.UTF-8):	Potężny zbiór narzędzi dla programistów (część uruchomieniowa)
 Name:		karma
 Version:	1.7
-Release:	2
+Release:	3
 License:	LGPL (KarmaLib), GPL (modules)
 Group:		Libraries
 Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/public/%{name}.src-v%{version}.tar.gz
