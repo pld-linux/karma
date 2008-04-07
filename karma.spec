@@ -8,7 +8,7 @@ Summary:	A powerful programmers toolkit (runtime part)
 Summary(pl.UTF-8):	Potężny zbiór narzędzi dla programistów (część uruchomieniowa)
 Name:		karma
 Version:	1.7
-Release:	3
+Release:	4
 License:	LGPL (KarmaLib), GPL (modules)
 Group:		Libraries
 Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/public/%{name}.src-v%{version}.tar.gz
@@ -18,7 +18,11 @@ Patch1:		%{name}-gkh.patch
 Patch2:		%{name}-amd64.patch
 URL:		http://www.atnf.csiro.au/karma/
 BuildRequires:	/bin/csh
-BuildRequires:	XFree86-devel
+BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXaw-devel
+BuildRequires:	xorg-lib-libXmu-devel
+BuildRequires:	xorg-lib-libXt-devel
+BuildRequires:	xorg-proto-xproto-devel
 BuildRequires:	rpmbuild(macros) >= 1.213
 BuildRequires:	xview-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
