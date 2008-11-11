@@ -8,7 +8,7 @@ Summary:	A powerful programmers toolkit (runtime part)
 Summary(pl.UTF-8):	Potężny zbiór narzędzi dla programistów (część uruchomieniowa)
 Name:		karma
 Version:	1.7
-Release:	5
+Release:	6
 License:	LGPL (KarmaLib), GPL (modules)
 Group:		Libraries
 Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/public/%{name}.src-v%{version}.tar.gz
@@ -120,7 +120,7 @@ cp source/modules/GNUmakefile build/${MACHINE_OS}/modules
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_libdir}/karma,%{_includedir}/karma}
 
-install dist/lib/* $RPM_BUILD_ROOT%{_libdir}
+cp -af dist/lib/* $RPM_BUILD_ROOT%{_libdir}
 cp -af dist/bin $RPM_BUILD_ROOT%{_libdir}/karma
 cp -af csh_script $RPM_BUILD_ROOT%{_libdir}/karma
 cp -rf include/{*.h,Xkw,shader} $RPM_BUILD_ROOT%{_includedir}/karma
