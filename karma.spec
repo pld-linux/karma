@@ -7,16 +7,15 @@
 Summary:	A powerful programmers toolkit (runtime part)
 Summary(pl.UTF-8):	Potężny zbiór narzędzi dla programistów (część uruchomieniowa)
 Name:		karma
-Version:	1.7
-Release:	6
+Version:	1.7.20
+Release:	1
 License:	LGPL (KarmaLib), GPL (modules)
 Group:		Libraries
-Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/public/%{name}.src-v%{version}.tar.gz
-# Source0-md5:	ac47c8a489cb6a59945e9b50705e6631
+Source0:	ftp://ftp.atnf.csiro.au/pub/software/karma/%{name}-%{version}-common.tar.bz2
+# Source0-md5:	e60db3b01a007342df3d9b82c1ab029d
 Patch0:		%{name}-makefix.patch
 Patch1:		%{name}-gkh.patch
-Patch2:		%{name}-amd64.patch
-URL:		http://www.atnf.csiro.au/karma/
+URL:		http://www.atnf.csiro.au/computing/software/karma/
 BuildRequires:	/bin/csh
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xorg-lib-libXaw-devel
@@ -56,10 +55,9 @@ Development part of KarmaLib.
 Część KarmaLib przeznaczona dla programistów.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %ifarch %{ix86}
@@ -101,20 +99,23 @@ export PATH
 
 csh_script/make_build.libs
 %{__make} -C build/${MACHINE_OS}/lib \
+	GCC="%{__cc}" \
+	LDso="%{__cc}" \
 	KOPTIMISE="%{rpmcflags}" \
-	XLIBPATH=/usr/X11R6/%{_lib} \
-	XINCLUDEPATH=/usr/X11R6/include
+	XLIBPATH=/usr/%{_lib} \
+	XINCLUDEPATH=/usr/include
 
 %{__make} -C source/kutil \
+	GCC="%{__cc}" \
 	KOPTIMISE="%{rpmcflags}" \
 	ADMINBINPATH=`pwd`/dist/admin.bin
 
 csh_script/make_build.modules
-cp source/modules/GNUmakefile build/${MACHINE_OS}/modules
 %{__make} -C build/${MACHINE_OS}/modules \
+	GCC="%{__cc}" \
 	KOPTIMISE="%{rpmcflags}" \
-	XLIBPATH=/usr/X11R6/%{_lib} \
-	XINCLUDEPATH=/usr/X11R6/include
+	XLIBPATH=/usr/%{_lib} \
+	XINCLUDEPATH=/usr/include
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -125,7 +126,7 @@ cp -af dist/bin $RPM_BUILD_ROOT%{_libdir}/karma
 cp -af csh_script $RPM_BUILD_ROOT%{_libdir}/karma
 cp -rf include/{*.h,Xkw,shader} $RPM_BUILD_ROOT%{_includedir}/karma
 
-rm -f www/{README.lib,update-policy,modules.html}
+%{__rm} www/{README.lib,update-policy,modules.html}
 cp -f doc/modules/Overview www/modules.html
 
 %clean
@@ -137,7 +138,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Release* ToDo doc/{README,update-policy} doc/{modules,widgets}
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libkarma.so.*.*
+%attr(755,root,root) %{_libdir}/libkarmaX11.so.*.*
+%attr(755,root,root) %{_libdir}/libkarmaXt.so.*.*
+%attr(755,root,root) %{_libdir}/libkarmagraphics.so.*.*
+%attr(755,root,root) %{_libdir}/libkarmawidgets.so.*.*
 %dir %{_libdir}/karma
 %dir %{_libdir}/karma/bin
 %attr(755,root,root) %{_libdir}/karma/bin/*
@@ -151,5 +156,9 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc www
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_libdir}/libkarma.so
+%attr(755,root,root) %{_libdir}/libkarmaX11.so
+%attr(755,root,root) %{_libdir}/libkarmaXt.so
+%attr(755,root,root) %{_libdir}/libkarmagraphics.so
+%attr(755,root,root) %{_libdir}/libkarmawidgets.so
 %{_includedir}/karma
